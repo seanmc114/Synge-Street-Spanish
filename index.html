@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Synge Street Spanish</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#0E5C3A">
+<meta name="apple-mobile-web-app-title" content="SS Spanish">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<!-- ═══════════════════════════════════════════════
+  SYNGE STREET SPANISH (a Loops Learning Tool)
+  Opinion piece + blog, marked by Markus through the Test Centre Worker
+  LC Higher, Section B Q5 opinion piece (task "hl_opinion", /50)
+  JC Spanish blog post (Q17 short, 5 points, /30: "jc_mfl_short";
+                        Q18 long, 8 points, /40: "jc_mfl_long")
+  Its own repo. Uses the Test Centre's Worker and schemes, so Markus marks it exactly as he does there.
+  Titles: LC_TITLES and JC_BLOGS below. Add or delete lines freely; keep each id unique.
+═══════════════════════════════════════════════ -->
+<style>
+:root{
+  --navy:#112480; --paper:#F7F3EA; --card:#FFFFFF; --ink:#1B2A4A; --muted:#5D6880;
+  --line:#E4DED0; --violet:#7B5EA7; --violet-soft:#EEE7F8; --jade:#2E9E7A; --jade-soft:#E1F3EC;
+  --amber:#E09A2B; --bro:#1B2A4A; --amber-soft:#FBF0DC; --terra:#C8614A; --terra-soft:#F8E4DE;
+  --accent:#C8614A;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --paper:#121A2C; --card:#1B2640; --ink:#EEF0F6; --muted:#A6AFC4; --line:#2C3A5A;
+    --violet-soft:#2D2545; --bro:#C9C2E0; --jade-soft:#173A33; --amber-soft:#3A2E17; --terra-soft:#3D231E; }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--paper);color:var(--ink);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body{min-height:100vh;min-height:100dvh}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+.app{max-width:520px;margin:0 auto;padding:16px 16px 40px}
+.screen{display:none}.screen.on{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.plaque{margin-bottom:14px;background:#112480;color:#fff;border-radius:14px;padding:10px 14px;display:flex;align-items:center;gap:12px;border:3px solid #fff;box-shadow:0 0 0 2px #112480;border-bottom-width:6px;border-bottom-color:var(--accent)}
+.plaque a.home{color:#fff;text-decoration:none;display:flex;align-items:center;gap:12px;min-width:0}
+.plaque .word{font-family:"Playfair Display",serif;font-weight:800;font-size:1.35rem;line-height:1.15;white-space:nowrap}
+.plaque .word i{font-weight:700}
+.plaque .sub{font-size:.72rem;opacity:.8;letter-spacing:.08em;text-transform:uppercase}
+.topnav{display:flex;gap:8px;margin:-4px 0 12px}
+.navb{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;min-height:40px;border-radius:999px;background:var(--card);border:1.5px solid var(--line);color:var(--ink);font-weight:700;font-size:.88rem;text-decoration:none}
+.navb[hidden]{display:none}
+
+h2{font-family:"Playfair Display",serif;font-size:1.45rem;margin:18px 0 6px}
+p.lead{color:var(--muted);font-size:.95rem;line-height:1.5}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-top:12px}
+.label{font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+input[type=text],textarea{width:100%;font:inherit;font-size:16px;padding:12px;border-radius:10px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink)}
+textarea{min-height:240px;resize:vertical;line-height:1.55}
+input:focus,textarea:focus{outline:none;border-color:var(--accent)}
+.seg{display:flex;gap:8px;flex-wrap:wrap}
+.seg button{flex:1;min-width:56px;padding:10px 0;border-radius:10px;border:1.5px solid var(--line);font-weight:600;background:var(--paper)}
+.seg button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn{display:block;width:100%;padding:15px;border-radius:12px;font-weight:700;font-size:1rem;text-align:center;margin-top:12px;text-decoration:none}
+.btn.primary{background:var(--navy);color:#fff}
+.btn.violet{background:var(--violet);color:#fff}
+.btn.accent{background:var(--accent);color:#fff}
+.btn.ghost{border:1.5px solid var(--line);background:var(--card);color:var(--ink)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+
+.titles{display:grid;gap:8px}
+.tt{text-align:left;padding:12px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--paper);line-height:1.4;font-weight:600;font-size:.93rem;border-left:6px solid var(--accent)}
+.tt small{display:block;font-weight:500;color:var(--muted);font-size:.78rem;margin-top:4px}
+.task-title{font-weight:600;line-height:1.45}
+.wc{text-align:right;font-size:.78rem;color:var(--muted);margin-top:4px}
+.wc.ok{color:var(--jade);font-weight:600}
+
+.bro-head{display:flex;gap:12px;align-items:center;margin-top:6px}
+.bro-say{line-height:1.55;font-size:.96rem;white-space:pre-line}
+.sign{margin-top:10px;text-align:right;font-family:"Playfair Display",serif;font-style:italic;color:var(--muted);font-size:.95rem}
+.verdict{border-radius:12px;padding:14px;text-align:center;margin-top:12px}
+.verdict.at,.verdict.above{background:var(--jade-soft)}
+.verdict.below{background:var(--amber-soft)}
+.verdict .n{font-family:"Playfair Display",serif;font-size:2.2rem;font-weight:800}
+.pt{display:grid;grid-template-columns:1fr auto;gap:4px 10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:.9rem}
+.pt:last-child{border-bottom:0}
+.pt .m{font-weight:700;white-space:nowrap}
+.pt .c{grid-column:1/-1;color:var(--muted);font-size:.83rem}
+.pt .tr{grid-column:1/-1;height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.pt .tr b{display:block;height:100%;background:var(--accent)}
+.fix{background:var(--violet-soft);border-radius:12px;padding:14px;margin-top:12px;font-size:.93rem;line-height:1.5}
+.fix s,.mine s{color:var(--terra)}
+.fix .better,.mine .better{color:var(--jade);font-weight:600}
+.mine{white-space:pre-wrap;line-height:1.7;font-size:.95rem}
+.mine mark{background:none;color:inherit}
+.pick{border-left:6px solid var(--violet)}
+.pick .pick-t{font-size:1.05rem;font-weight:700;line-height:1.45;margin-top:4px}
+.pick .pick-g{display:inline-block;margin-top:8px;background:#16A34A;color:#fff;font-weight:800;font-size:.85rem;padding:3px 10px;border-radius:100px}
+.passbox{background:var(--amber-soft);border-radius:12px;padding:14px;margin-top:12px}
+.passbox input{text-transform:uppercase;letter-spacing:.06em}
+.typing{display:flex;gap:5px;padding:16px 0 0}
+.typing i{width:8px;height:8px;border-radius:50%;background:var(--muted);animation:bob 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes bob{0%,100%{opacity:.3;transform:none}50%{opacity:1;transform:translateY(-4px)}}
+
+/* Slips drill */
+.dots{display:flex;gap:4px;margin-bottom:12px}
+.dots i{flex:1;height:8px;border-radius:4px;background:var(--line)}
+.dots i.ok{background:var(--jade)}.dots i.no{background:var(--terra)}.dots i.cur{background:var(--accent)}
+.q{font-weight:600;font-size:1.08rem;line-height:1.45;margin:6px 0 12px}
+.q s{color:var(--terra)}
+.fb{margin-top:12px;padding:12px 14px;border-radius:10px;font-size:.95rem;line-height:1.5;display:none;text-align:center}
+.fb.on{display:block}
+.fb.good{background:var(--jade-soft)}.fb.bad{background:var(--terra-soft)}
+.reps{display:inline-flex;gap:3px;vertical-align:middle;margin-left:6px}
+.reps i{width:8px;height:8px;border-radius:50%;background:var(--line)}
+.reps i.on{background:var(--jade)}
+.slipline{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:.88rem}
+.slipline:last-child{border-bottom:0}
+
+footer{margin-top:28px;text-align:center;font-size:.72rem;color:var(--muted);line-height:1.6}
+footer em{font-family:"Playfair Display",serif;font-style:italic;font-size:.85rem}
+footer a{color:inherit;font-weight:700}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(80px);background:var(--navy);color:#fff;padding:10px 16px;border-radius:999px;font-size:.88rem;font-weight:600;transition:transform .3s;z-index:9;max-width:90vw;text-align:center}
+.toast.on{transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="plaque">
+    <a class="home" href="./" aria-label="Synge Street Spanish">
+      <img src="assets/triskel-white.png" alt="" width="40" height="40" style="display:block">
+      <span>
+        <span class="word" style="display:block">Synge Street <i>Spanish</i></span>
+        <span class="sub" id="packSub" style="display:block">LC Spanish · Higher · Opinion piece</span>
+      </span>
+    </a>
+  </div>
+  <nav class="topnav"><button class="navb" id="backBtn" hidden>← Back</button></nav>
+
+  <!-- HOME -->
+  <section class="screen on" id="s-home">
+    <h2 id="hello">Write it. He marks it.</h2>
+    <p class="lead" id="intro"></p>
+
+    <div class="card">
+      <div class="label">Your exam</div>
+      <div class="seg" id="modeSeg"><button data-m="lc">LC Higher · Opinion</button><button data-m="jc">Junior Cycle · Blog</button></div>
+      <div class="label" style="margin-top:14px">Your first name</div>
+      <input type="text" id="name" maxlength="30" placeholder="What do they call you?" autocomplete="off">
+      <div class="label" style="margin-top:14px">Your target</div>
+      <div class="seg" id="targetSeg"></div>
+    </div>
+
+    <div class="card pick" id="slipCard" hidden></div>
+
+    <div class="card" id="titleCard">
+      <div class="label">Pick a title</div>
+      <div class="titles" id="titles"></div>
+      <div id="ownWrap">
+      <div class="label" style="margin-top:16px">Or your own (from a past paper or your teacher)</div>
+      <input type="text" id="ownTitle" placeholder="«…» ¿Estás de acuerdo?" autocomplete="off">
+      <button class="btn ghost" id="ownGo">Write on this title →</button>
+      </div>
+    </div>
+
+    <div class="card" id="histCard" hidden>
+      <div class="label">Your last pieces</div>
+      <div id="hist"></div>
+    </div>
+  </section>
+
+  <!-- WRITE -->
+  <section class="screen" id="s-write">
+    <div id="writeWork">
+      <div class="card">
+        <div class="label" id="wLabel">Opinion piece · 25 content + 25 language</div>
+        <div class="task-title" id="wTitle"></div>
+        <ol id="wPts" style="margin:10px 0 0;padding-left:20px;line-height:1.55;font-size:.93rem"></ol>
+      </div>
+      <div class="card">
+        <div class="label">Write it</div>
+        <textarea id="typed" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="Escribe tu opinión aquí, como en el examen…"></textarea>
+        <div class="wc" id="wc">0 words</div>
+        <button class="btn accent" id="submitBtn">Hand it up</button>
+        <p class="lead" style="font-size:.8rem;margin-top:8px;text-align:center" id="wNote"></p>
+      </div>
+    </div>
+    <div id="result"></div>
+  </section>
+
+  <!-- SLIPS DRILL -->
+  <section class="screen" id="s-drill">
+    <div class="dots" id="dots"></div>
+    <div class="card">
+      <div class="label">From your own writing · put it right</div>
+      <div class="q" id="dq"></div>
+      <input type="text" id="dans" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="The right version…">
+      <button class="btn primary" id="dcheck">Check</button>
+      <div class="fb" id="dfb"></div>
+      <button class="btn accent" id="dnext" style="display:none">Next →</button>
+    </div>
+  </section>
+
+  <footer>
+    AI can make mistakes. Your teacher has the final say. Spot one? Tell your teacher.<br>
+    <a id="tcLink" href="#" hidden>Every subject: the Loops Test Centre →<br></a>
+    <a href="https://loopslearningtoolsdublin.github.io/Loops-Library/library.html?cat=Exam%20Prep">More from Loops: the library →</a><br>
+    © 2026 Loops Learning Tools · Dublin<br><em>Imagination and perseverance.</em>
+  </footer>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>window.COACH = { name: "Markus" };</script>
+<script>
+// ═══════════════════════════════════════════════
+// CONFIG
+// ═══════════════════════════════════════════════
+const WORKER_URL = "https://tiny-shape-0dcfar.seansynge.workers.dev";   // the Test Centre's Worker: Markus lives there
+const TEST_CENTRE_URL = "";             // paste the Test Centre's address to show a link to it in the footer
+const PASS_BUY_URL = "";                // same Stripe link as app.html, if charging
+const PASS_STORE = "loops_pass";        // shared with the Test Centre: one pass works in both
+const STORE = "sss_spanish_v1";
+const SLIPS_FIRST = true;   // true: slips that are due must be put right before the next piece is marked (the "earn it" step)
+const ALLOW_PASTE = false;  // false: they type it themselves, as in the Test Centre
+const RIGHT_TO_RETIRE = 6;  // a slip keeps coming back until it has been put right this many times
+const GAP_DAYS = [0, 1, 1, 2, 3, 4, 6];   // days until a slip returns, by how many times it has been put right
+const MAX_DRILL = 8;
+
+// ── Extra LC Higher opinion titles (Section B, Q5 style). Add or delete lines freely; keep each id unique. ──
+const W100 = " (unas 100 palabras)";
+const LC_TITLES = [
+  ["hop1", "«Las redes sociales hacen más daño que bien a los adolescentes.» ¿Estás de acuerdo?"],
+  ["hop2", "«Los jóvenes irlandeses tienen demasiada presión para sacar buenas notas.» ¿Qué opinas?"],
+  ["hop3", "«Viajar es la mejor manera de aprender.» ¿Estás de acuerdo?"],
+  ["hop4", "«Los jóvenes de hoy no se preocupan por el medio ambiente.» ¿Estás de acuerdo?"],
+  ["hop5", "«Hoy en día los jóvenes pasan demasiado tiempo delante de una pantalla.» ¿Qué opinas?"],
+  ["op1",  "«Los móviles deberían estar prohibidos en los colegios.» ¿Estás de acuerdo?"],
+  ["op2",  "«La tecnología nos acerca a los que están lejos y nos aleja de los que están cerca.» ¿Qué opinas?"],
+  ["op3",  "«Aprender un idioma extranjero abre muchas puertas.» ¿Estás de acuerdo?"],
+  ["op4",  "«El Leaving Cert no mide la verdadera inteligencia de un estudiante.» ¿Qué opinas?"],
+  ["op5",  "«Hoy en día los jóvenes no leen lo suficiente.» ¿Estás de acuerdo?"],
+  ["op6",  "«Los famosos tienen demasiada influencia en los jóvenes.» ¿Qué opinas?"],
+  ["op7",  "«Es mejor vivir en el campo que en la ciudad.» ¿Estás de acuerdo?"],
+  ["op8",  "«El alcohol ocupa un lugar demasiado importante en la vida social irlandesa.» ¿Qué opinas?"],
+  ["op9",  "«Todos los jóvenes deberían tener un trabajo a tiempo parcial.» ¿Estás de acuerdo?"],
+  ["op10", "«La familia es más importante que los amigos.» ¿Qué opinas?"],
+  ["op11", "«Cada uno de nosotros puede hacer algo para salvar el planeta.» ¿Estás de acuerdo?"],
+  ["op12", "«La vivienda es el mayor problema de los jóvenes irlandeses hoy en día.» ¿Qué opinas?"],
+  ["op13", "«Llevar una vida sana es más fácil de decir que de hacer.» ¿Estás de acuerdo?"],
+  ["op14", "«La inteligencia artificial hará más mal que bien.» ¿Qué opinas?"],
+  ["op15", "«Irlanda es un país acogedor para la gente que viene de fuera.» ¿Estás de acuerdo?"],
+  ["op16", "«Los jóvenes de hoy lo tienen más fácil que sus padres.» ¿Qué opinas?"],
+  ["op17", "«El dinero no da la felicidad.» ¿Estás de acuerdo?"],
+  ["op18", "«El turismo hace más daño que bien.» ¿Qué opinas?"],
+  ["op19", "«Hombres y mujeres todavía no tienen las mismas oportunidades.» ¿Estás de acuerdo?"],
+  ["op20", "«Tomarse un año sabático antes de la universidad es una pérdida de tiempo.» ¿Qué opinas?"],
+  ["op21", "«Los videojuegos son una pérdida de tiempo.» ¿Estás de acuerdo?"],
+  ["op22", "«Es importante mantener vivas las tradiciones.» ¿Qué opinas?"]
+].map(([id, t]) => ({id, title: t + W100}));
+
+// ── Extra Junior Cycle blog posts. kind "jc_mfl_short" = 5 points /30 (Q17); "jc_mfl_long" = 8 points /40 (Q18). ──
+const JC_BLOGS = [
+  {id:"js3", kind:"jc_mfl_short", title:"Write a short blog post in Spanish about your school. Include these five points:", pts:["the name of your school and where it is","how many students there are","your favourite subject and why","what you do at lunchtime","something you don’t like"]},
+  {id:"bl1", kind:"jc_mfl_short", title:"Write a blog post in Spanish about your weekend. Include these five points:", pts:["what you did on Saturday morning","who you were with","where you ate and what you had","what you did in the evening","your plans for next weekend"]},
+  {id:"bl2", kind:"jc_mfl_short", title:"Write a blog post in Spanish about your favourite hobby. Include these five points:", pts:["what your hobby is","how often you do it","who you do it with","why you like it","something new you would like to try"]},
+  {id:"bl3", kind:"jc_mfl_short", title:"Write a blog post in Spanish about your town. Include these five points:", pts:["where your town is","what there is to do there","what you do there with your friends","something you don’t like about it","the best time of year to visit"]},
+  {id:"bl4", kind:"jc_mfl_short", title:"Write a blog post in Spanish about a concert or match you went to. Include these five points:", pts:["who or what you saw","where it was","who you went with","the best moment","how you felt afterwards"]},
+  {id:"bl5", kind:"jc_mfl_short", title:"Write a blog post in Spanish about your plans for the summer. Include these five points:", pts:["where you are going","who you are going with","how you will travel","what you will do there","what you are looking forward to most"]},
+  {id:"bl6", kind:"jc_mfl_short", title:"Write a blog post in Spanish about your best friend. Include these five points:", pts:["their name and age","what they look like","what they are like as a person","what you do together","why they are a good friend"]},
+  {id:"bl7", kind:"jc_mfl_long", title:"Write a blog post in Spanish about a school trip to Spain. Include these eight points:", pts:["where you went","how you travelled","where you stayed","what the weather was like","what you visited","a food you tried","something funny that happened","whether you would go back and why"]},
+  {id:"bl8", kind:"jc_mfl_long", title:"Write a blog post in Spanish about a healthy lifestyle. Include these eight points:", pts:["what you eat for breakfast","your favourite healthy food","a food you eat too much of","the sport or exercise you do","how often you do it","how many hours you sleep","something you did last week to stay healthy","one change you will make"]},
+  {id:"bl9", kind:"jc_mfl_long", title:"Write a blog post in Spanish about how you celebrated your last birthday. Include these eight points:", pts:["the date of your birthday","how old you were","who you celebrated with","where you went","what you ate","the presents you got","the best moment of the day","how you will celebrate next year"]},
+  {id:"bl10", kind:"jc_mfl_long", title:"Write a blog post in Spanish about a typical school day. Include these eight points:", pts:["what time you get up","how you get to school","your favourite subject and why","a subject you don’t like","what you do at lunchtime","your school uniform","what you do after school","what you will do when you leave school"]},
+  {id:"bl11", kind:"jc_mfl_long", title:"Write a blog post in Spanish about Christmas in your house. Include these eight points:", pts:["who comes to your house","how you decorate the house","what you eat on Christmas Day","a present you got last year","a present you would like this year","what you do on St Stephen’s Day","a Spanish Christmas tradition you know","what you like most about Christmas"]},
+  {id:"bl12", kind:"jc_mfl_long", title:"Write a blog post in Spanish about your family and your home. Include these eight points:", pts:["who is in your family","describe one person in your family","any pets you have","where your house is","describe your house","describe your bedroom","a job you do at home","what you did together last weekend"]}
+];
+
+const MODES = {
+  lc: { sub:"LC Spanish · Higher · Opinion piece", level:"HL", cycle:"LC", targets:["H1","H2","H3","H4"], aim:100,
+        label: () => "Opinion piece · 25 content + 25 language",
+        intro:"Section B, Question 5. Pick a title, write it the way you would on the day, and Markus marks it out of 50: 25 for content, 25 for language, the way the examiner does.",
+        note:"No notes, no translator. Your own Spanish wins marks; learned-off paragraphs don’t.",
+        titles: LC_TITLES.map(t => Object.assign({kind:"hl_opinion", pts:[]}, t)) },
+  jc: { sub:"Junior Cycle Spanish · Blog post", level:"CL", cycle:"JC", targets:["Distinction","Higher Merit","Merit","Achieved"],
+        label: t => t.kind === "jc_mfl_long" ? "Blog · 8 points · 40 marks" : "Blog · 5 points · 30 marks",
+        intro:"Section C writing. Pick a blog post, cover every point, and Markus marks it the way the examiner does: 2 marks a point if you develop it, and the rest for your Spanish.",
+        note:"Answer every point and add a detail to each: that’s where the marks are.",
+        titles: JC_BLOGS }
+};
+const TARGET_PCT = {H1:90, H2:80, H3:70, H4:60, H5:50, H6:40, H7:30, H8:0,
+                    "Distinction":90, "Higher Merit":75, "Merit":55, "Achieved":40, "Partially Achieved":20, "Not Graded":0};   // SEC grading, as the Worker has them
+const GRADES = {lc:["H1","H2","H3","H4","H5","H6","H7","H8"], jc:["Distinction","Higher Merit","Merit","Achieved","Partially Achieved","Not Graded"]};
+function M(){ return MODES[S.mode] || MODES.lc; }
+
+// ═══════════════════════════════════════════════
+// STATE (on the phone only)
+// ═══════════════════════════════════════════════
+let S;
+try { S = JSON.parse(localStorage.getItem(STORE)); } catch(e) {}
+S = Object.assign({name:"", mode:"lc", target:"H3", targetJC:"Merit", attempts:[], slips:[]}, S || {});
+function tgt(){ return S.mode === "jc" ? S.targetJC : S.target; }
+let PASS = null; try { PASS = JSON.parse(localStorage.getItem(PASS_STORE)) || null; } catch(e) {}
+let CUR = null;     // {id, title}
+function save(){ try { localStorage.setItem(STORE, JSON.stringify(S)); } catch(e) {} }
+function today(){ return new Date().toLocaleDateString("en-CA", {timeZone:"Europe/Dublin"}); }
+function addDays(n){ const d = new Date(); d.setDate(d.getDate() + n); return d.toLocaleDateString("en-CA", {timeZone:"Europe/Dublin"}); }
+function dueSlips(){ const t = today(); return S.slips.filter(s => s.right < RIGHT_TO_RETIRE && s.due <= t); }
+
+// ═══════════════════════════════════════════════
+// HOME
+// ═══════════════════════════════════════════════
+function refreshHome(){
+  const MD = M();
+  $("name").value = S.name;
+  $("hello").textContent = S.name ? "Right, " + S.name + "." : "Write it. He marks it.";
+  $("intro").textContent = MD.intro;
+  $("packSub").textContent = MD.sub;
+  $("ownWrap").hidden = S.mode === "jc";
+  $("modeSeg").querySelectorAll("button").forEach(b => { b.classList.toggle("on", b.dataset.m === S.mode); b.onclick = () => { S.mode = b.dataset.m; save(); refreshHome(); }; });
+  $("targetSeg").innerHTML = MD.targets.map(g => "<button data-t='" + esc(g) + "' class='" + (g === tgt() ? "on" : "") + "'>" + esc(g) + "</button>").join("");
+  $("targetSeg").querySelectorAll("button").forEach(b => b.onclick = () => { if (S.mode === "jc") S.targetJC = b.dataset.t; else S.target = b.dataset.t; save(); refreshHome(); });
+
+  $("titles").innerHTML = MD.titles.map((t, i) => {
+    const last = S.attempts.filter(a => a.task === t.id).slice(-1)[0];
+    return "<button class='tt' data-i='" + i + "'>" + esc(t.title) + (t.pts && t.pts.length ? "<small>" + esc(t.pts.join(" · ")) + "</small>" : "") + (last ? "<small>Last time " + last.total + "/" + last.max + "</small>" : "") + "</button>";
+  }).join("");
+  $("titles").querySelectorAll(".tt").forEach(b => b.onclick = () => openWrite(MD.titles[+b.dataset.i]));
+
+  const due = dueSlips(), live = S.slips.filter(s => s.right < RIGHT_TO_RETIRE);
+  const held = SLIPS_FIRST && due.length > 0;
+  $("titleCard").style.opacity = held ? ".5" : "1";
+  $("titleCard").style.pointerEvents = held ? "none" : "auto";
+  if (live.length){
+    $("slipCard").hidden = false;
+    $("slipCard").innerHTML = "<div class='label'>Your slips · from your own writing</div>" +
+      (due.length
+        ? "<div class='pick-t'>" + due.length + " to put right today" + (held ? ", then " + COACH.name + " marks your next piece." : ".") + "</div><button class='btn violet' id='drillBtn'>Put them right →</button>"
+        : "<div class='pick-t'>All done for today. They come back over the next few days until you’ve nailed each one " + RIGHT_TO_RETIRE + " times.</div>") +
+      "<details style='margin-top:10px'><summary style='cursor:pointer;color:var(--muted);font-size:.85rem;font-weight:600'>See them all (" + live.length + ")</summary>" +
+      live.map(s => "<div class='slipline'><span><s style='color:var(--terra)'>" + esc(s.original) + "</s></span><span class='reps'>" + Array.from({length:RIGHT_TO_RETIRE}, (_, k) => "<i class='" + (k < s.right ? "on" : "") + "'></i>").join("") + "</span></div>").join("") + "</details>";
+    const db = $("drillBtn"); if (db) db.onclick = startDrill;
+  } else $("slipCard").hidden = true;
+
+  const recent = S.attempts.filter(a => (a.mode || "lc") === S.mode).slice(-5).reverse();
+  $("histCard").hidden = !recent.length;
+  $("hist").innerHTML = recent.map(a => "<div class='slipline'><span>" + esc(a.title.slice(0, 60)) + (a.title.length > 60 ? "…" : "") + "</span><b>" + a.total + "/" + a.max + "</b></div>").join("");
+}
+$("name").onchange = () => { S.name = $("name").value.trim(); save(); refreshHome(); };
+$("ownGo").onclick = () => {
+  const t = $("ownTitle").value.trim();
+  if (t.length < 12){ toast("Type the full title first"); return; }
+  openWrite({id:"own:" + norm(t).slice(0, 60), kind:"hl_opinion", title:t, pts:[]});
+};
+
+// ═══════════════════════════════════════════════
+// WRITE + MARK
+// ═══════════════════════════════════════════════
+function openWrite(t){
+  if (SLIPS_FIRST && dueSlips().length){ toast("Put your slips right first"); return; }
+  CUR = t;
+  const MD = M();
+  $("wTitle").textContent = t.title;
+  $("wLabel").textContent = MD.label(t);
+  $("wPts").innerHTML = (t.pts || []).map(p => "<li>" + esc(p) + "</li>").join("");
+  $("wNote").textContent = MD.note;
+  $("result").innerHTML = ""; $("writeWork").style.display = "block";
+  const draft = (S.drafts || {})[t.id] || "";
+  $("typed").value = draft; countWords();
+  show("s-write");
+}
+function countWords(){
+  const n = $("typed").value.trim().split(/\s+/).filter(Boolean).length;
+  const aim = M().aim;
+  $("wc").textContent = n + " word" + (n === 1 ? "" : "s") + (aim ? " · aim for about " + aim : "");
+  $("wc").classList.toggle("ok", aim ? n >= aim - 10 : false);
+  S.drafts = S.drafts || {}; if (CUR) { S.drafts[CUR.id] = $("typed").value; save(); }
+}
+$("typed").oninput = countWords;
+
+async function handUp(){
+  const typed = $("typed").value.trim();
+  const words = typed.split(/\s+/).filter(Boolean).length;
+  if (words < (S.mode === "jc" ? 20 : 30)){ toast("Give him a real piece: at least a few sentences"); return; }
+  const prev = S.attempts.filter(a => a.task === CUR.id).slice(-1)[0];
+  $("writeWork").style.display = "none";
+  $("result").innerHTML = "<div class='card'><div class='bro-say'>Right. Let’s have a look…</div><div class='typing'><i></i><i></i><i></i></div></div>";
+  const MD = M();
+  const body = {mode:"lc_ol_mark", task:CUR.kind || "hl_opinion", level:MD.level, cycle:MD.cycle, subject:"Spanish",
+    prompt_title:CUR.title, prompt_points:CUR.pts || [], name:S.name || "friend", target:tgt(), writing:typed, images:[],
+    pass: PASS && PASS.code, attempt_number: S.attempts.filter(a => a.task === CUR.id).length + 1, previous_pct: prev ? prev.pct : null};
+  try {
+    const res = await fetch(WORKER_URL, {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(body)});
+    const data = await res.json();
+    if (!data.mark){
+      if (data.pass) setPass(data.pass);
+      if (data.need_pass || data.off_duty || res.status === 429){ showGate(data); return; }
+      throw new Error(data.error || "no mark");
+    }
+    const m = data.mark;
+    if (m.pass) setPass(m.pass);
+    S.attempts.push({task:CUR.id, mode:S.mode, title:CUR.title, total:m.total, max:m.max, pct:m.pct, at:Date.now()});
+    S.attempts = S.attempts.slice(-60);
+    addSlips(m);
+    if (S.drafts) delete S.drafts[CUR.id];
+    save(); renderMark(m, typed);
+  } catch(err){
+    $("result").innerHTML = "<div class='card'><div class='bro-say'>" + COACH.name + "’s not answering right now. Your writing is saved.</div><p class='lead' style='font-size:.8rem;margin-top:8px'>" + esc(String(err.message || err)) + "</p></div><button class='btn ghost' onclick='backToWriting()'>Back to my piece</button>";
+  }
+}
+$("submitBtn").onclick = handUp;
+function backToWriting(){ $("result").innerHTML = ""; $("writeWork").style.display = "block"; }
+
+function addSlips(m){
+  const list = (m.slips || []).slice();
+  if (m.fix && m.fix.original && m.fix.better) list.unshift({original:m.fix.original, better:m.fix.better});
+  const have = new Set(S.slips.map(s => tight(s.better)));
+  list.forEach(x => {
+    if (!x.original || !x.better || tight(x.original) === tight(x.better) || have.has(tight(x.better))) return;
+    have.add(tight(x.better));
+    S.slips.push({id:"s" + Date.now().toString(36) + Math.random().toString(36).slice(2, 5), original:String(x.original), better:String(x.better), right:0, due:addDays(1), from:CUR.title});
+  });
+  // Keep the live ones; drop the oldest retired ones
+  S.slips = S.slips.filter(s => s.right < RIGHT_TO_RETIRE).concat(S.slips.filter(s => s.right >= RIGHT_TO_RETIRE).slice(-20)).slice(-60);
+}
+
+// Their own piece, with each slip struck through and put right beside it
+function marked(text, m){
+  const fixes = (m.slips || []).concat(m.fix ? [m.fix] : []).filter(x => x && x.original && x.better);
+  let html = esc(text);
+  fixes.forEach(x => {
+    const o = esc(x.original), i = html.toLowerCase().indexOf(o.toLowerCase());
+    if (i < 0) return;
+    html = html.slice(0, i) + "<mark><s>" + html.slice(i, i + o.length) + "</s> <span class='better'>" + esc(x.better) + "</span></mark>" + html.slice(i + o.length);
+  });
+  return html;
+}
+
+function renderMark(m, text){
+  const G = GRADES[S.mode] || GRADES.lc;
+  const gradeOf = p => G.find(g => p >= TARGET_PCT[g]) || G[G.length - 1];
+  const head = m.verdict === "below" ? "Tracking " + gradeOf(m.pct) + " · target " + m.target
+    : (m.verdict === "above" ? "Above your " + m.target + " 🎉" : "That’s your " + m.target + " ✔");
+  let h = "<div class='verdict " + m.verdict + "'><div class='n'>" + m.total + "/" + m.max + "</div><div style='font-weight:600'>" + head + "</div>" +
+    "<div style='font-size:.8rem;color:var(--muted);margin-top:6px'>" + (m.band ? "Examiners’ range " + m.band[0] + "–" + m.band[1] + " · " : "") + "Marked twice" + (m.adjudicated ? ", then settled by a third examiner" : ", examiners agreed") + "</div></div>";
+  h += "<div class='card'><div class='bro-say'>" + esc(m.feedback) + "</div><div class='sign'>— " + COACH.name + "</div></div>";
+  if (m.fix) h += "<div class='fix'><div class='label' style='color:var(--violet)'>The one fix</div><s>" + esc(m.fix.original) + "</s><br><span class='better'>" + esc(m.fix.better) + "</span><br><span style='font-size:.85rem;color:var(--muted)'>" + esc(m.fix.why || "") + "</span></div>";
+  if (m.easy && m.easy.tip) h += "<div class='card pick'><div class='label'>Easy marks</div><div class='pick-t'>" + esc(m.easy.tip) + "</div>" + (m.easy.gain ? "<div class='pick-g'>+" + m.easy.gain + " marks</div>" : "") + "</div>";
+  h += "<div class='card'><div class='label'>" + (m.style === "per_point" ? "Point by point" : "Criterion by criterion") + " · as the examiner sees it</div>" + m.points.map((p, i) =>
+    "<div class='pt'><div>" + (i + 1) + ". " + esc(p.point) + "</div><div class='m'>" + p.mark + "/" + p.max + "</div><div class='tr'><b style='width:" + (p.max ? p.mark / p.max * 100 : 0) + "%'></b></div><div class='c'>" + esc(p.comment || "") + (p.note ? "<b style='display:block;color:var(--ink);font-size:.78rem;margin-top:3px'>" + esc(p.note) + "</b>" : "") + "</div></div>").join("") + "</div>";
+  const nS = (m.slips || []).length + (m.fix ? 1 : 0);
+  h += "<div class='card'><div class='label'>Your piece" + (nS ? " · put right" : "") + "</div><div class='mine'>" + marked(text, m) + "</div></div>";
+  if (nS) h += "<p class='lead' style='text-align:center;margin-top:12px;font-size:.88rem'>Those lines come back to you from tomorrow, until you’ve put each one right " + RIGHT_TO_RETIRE + " times.</p>";
+  h += "<button class='btn accent' onclick='again()'>Have another go at this title</button><button class='btn ghost' onclick='show(\"s-home\")'>Pick another title</button>";
+  $("result").innerHTML = h;
+  window.scrollTo(0, 0);
+}
+function again(){ $("typed").value = ""; countWords(); backToWriting(); }
+
+// ── Passes (same as the Test Centre) ──
+function showGate(d){
+  let h = "<div class='card'><div class='bro-say'>" + esc(d.error || "") + "</div><div class='sign'>— " + COACH.name + "</div>";
+  if (d.need_pass) h += "<div class='passbox'><div class='label'>Got a pass code?</div><input type='text' id='passIn' placeholder='LOOPS-XXXX-XXXX' autocomplete='off'><button class='btn primary' id='passGo'>Use this code</button>" +
+    (PASS_BUY_URL ? "<a class='btn violet' href='" + esc(PASS_BUY_URL) + "' target='_blank' rel='noopener'>Get a pass</a>" : "<p class='lead' style='font-size:.85rem;margin-top:8px'>Ask your teacher for a code.</p>") + "</div>";
+  h += "<p class='lead' style='margin-top:10px;font-size:.85rem'>Your writing is saved.</p></div><button class='btn ghost' onclick='backToWriting()'>Back to my piece</button>";
+  $("result").innerHTML = h;
+  const go = $("passGo");
+  if (go) go.onclick = async () => {
+    const code = $("passIn").value.trim().toUpperCase(); if (!code) return;
+    try {
+      const r = await fetch(WORKER_URL, {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({mode:"pass_check", pass:code})});
+      const j = await r.json(); if (!j.pass) throw new Error(j.error || "Not found");
+      setPass(j.pass); toast("Pass saved. " + j.pass.left_month + " markings left this month"); backToWriting();
+    } catch(e){ toast(e.message); }
+  };
+}
+function setPass(p){ PASS = Object.assign({}, PASS || {}, p); try { localStorage.setItem(PASS_STORE, JSON.stringify(PASS)); } catch(e) {} }
+
+// ═══════════════════════════════════════════════
+// SLIPS DRILL — their own mistakes, typed right. Accents count.
+// ═══════════════════════════════════════════════
+let D = null;
+function startDrill(){
+  const q = dueSlips().sort(() => Math.random() - .5).slice(0, MAX_DRILL);
+  if (!q.length) return;
+  D = {q, i:0, res:[], retry:new Set()};
+  show("s-drill"); drawQ();
+}
+function drawQ(){
+  const s = D.q[D.i];
+  $("dots").innerHTML = D.q.map((_, k) => "<i class='" + (k < D.i ? (D.res[k] ? "ok" : "no") : k === D.i ? "cur" : "") + "'></i>").join("");
+  $("dq").innerHTML = "You wrote: <s>" + esc(s.original) + "</s>";
+  $("dans").value = ""; $("dans").disabled = false; $("dans").focus();
+  $("dfb").className = "fb"; $("dcheck").style.display = "block"; $("dnext").style.display = "none";
+}
+function drillCheck(){
+  const s = D.q[D.i], a = $("dans").value;
+  if (!a.trim()) return;
+  const ok = tight(a) === tight(s.better);
+  const accentOnly = !ok && loose(a) === loose(s.better);
+  D.res[D.i] = ok;
+  if (ok){
+    s.right++; s.due = addDays(GAP_DAYS[Math.min(s.right, GAP_DAYS.length - 1)]);
+    $("dfb").className = "fb on good";
+    $("dfb").innerHTML = "<b>" + (s.right >= RIGHT_TO_RETIRE ? "Nailed. That one’s gone for good. 🎉" : pick(["Sound.", "That’s it.", "Spot on.", "Lovely.", "Exactly right."])) + "</b>";
+  } else {
+    s.due = today();   // stays due: it comes round again today
+    if (!D.retry.has(s.id)){ D.retry.add(s.id); D.q.push(s); }
+    $("dfb").className = "fb on bad";
+    $("dfb").innerHTML = "<b>" + (accentOnly ? "Nearly: watch the accents." : "Not yet.") + "</b><br>" + esc(s.better);
+  }
+  save();
+  $("dans").disabled = true; $("dcheck").style.display = "none"; $("dnext").style.display = "block";
+}
+$("dcheck").onclick = drillCheck;
+$("dans").onkeydown = e => { if (e.key === "Enter"){ if ($("dcheck").style.display !== "none") drillCheck(); else $("dnext").click(); } };
+$("dnext").onclick = () => {
+  D.i++;
+  if (D.i < D.q.length) return drawQ();
+  const n = D.res.filter(Boolean).length;
+  toast(n + " of " + D.q.length + " right" + (dueSlips().length ? ". The rest come back later." : ". Door’s open."));
+  show("s-home");
+};
+
+// ═══════════════════════════════════════════════
+// UI plumbing
+// ═══════════════════════════════════════════════
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;"); }
+function norm(s){ return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9ñ ]/g," ").replace(/\s+/g," ").trim(); }
+// tight: accents and ñ count; punctuation and capitals don't
+function tight(s){ return String(s).replace(/[​-‍﻿ ]/g," ").toLowerCase().normalize("NFC").replace(/[¿?¡!.,;:"“”«»'’()]/g," ").replace(/\s+/g," ").trim(); }
+function loose(s){ return tight(s).normalize("NFD").replace(/[̀-ͯ]/g,""); }
+function pick(a){ return a[Math.floor(Math.random() * a.length)]; }
+function toast(t){ const el = $("toast"); el.textContent = t; el.classList.add("on"); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove("on"), 2400); }
+function show(id){
+  document.querySelectorAll(".screen").forEach(s => s.classList.toggle("on", s.id === id));
+  $("backBtn").hidden = id === "s-home";
+  if (id === "s-home") refreshHome();
+  window.scrollTo(0, 0);
+}
+$("backBtn").onclick = () => show("s-home");
+if (!ALLOW_PASTE) (function(){
+  const say = () => toast("Type it yourself. That’s how it sticks.");
+  const inBox = e => e.target.closest && e.target.closest("#typed, #dans");
+  document.addEventListener("paste", e => { if (inBox(e)){ e.preventDefault(); say(); } }, true);
+  document.addEventListener("drop", e => { if (inBox(e)){ e.preventDefault(); say(); } }, true);
+  document.addEventListener("beforeinput", e => { if (/^insertFrom(Paste|Drop)/.test(e.inputType || "") && inBox(e)){ e.preventDefault(); say(); } }, true);
+})();
+
+if (TEST_CENTRE_URL){ $("tcLink").href = TEST_CENTRE_URL; $("tcLink").hidden = false; }
+refreshHome();
+</script>
+</body>
+</html>
